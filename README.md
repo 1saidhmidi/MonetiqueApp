@@ -1,4 +1,4 @@
-# angular-10-registration-login-example
+# angular-MonetiqueAPP
 
 Angular 10 - User Registration and Login Example
 
