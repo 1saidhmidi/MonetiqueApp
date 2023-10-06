@@ -1,0 +1,112 @@
+<h1 *ngIf="isAddMode">Add Incident</h1>
+<h1 *ngIf="!isAddMode">Edit Incident</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="transactions">transactions</label>
+            <input type="text" formControlName="transactions" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.transactions.errors }" />
+            <div *ngIf="submitted && f.transactions.errors" class="invalid-feedback">
+                <div *ngIf="f.transactions.errors.required">transactions is required</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="bourrage">bourrage</label>
+            <input type="text" formControlName="bourrage" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.bourrage.errors }" />
+            <div *ngIf="submitted && f.bourrage.errors" class="invalid-feedback">
+                <div *ngIf="f.bourrage.errors.required">Lib is required</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="blocage">blocage</label>
+            <input type="text" formControlName="blocage" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.blocage.errors }" />
+            <div *ngIf="submitted && f.blocage.errors" class="invalid-feedback">
+                <div *ngIf="f.blocage.errors.required">blocage is required</div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="coupure">coupure</label>
+                <input type="text" formControlName="coupure" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.coupure.errors }" />
+                <div *ngIf="submitted && f.coupure.errors" class="invalid-feedback">
+                    <div *ngIf="f.coupure.errors.required">coupure is required</div>
+                </div>
+            </div>
+
+
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="autre">autre</label>
+                    <input type="text" formControlName="autre" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.autre.errors }" />
+                    <div *ngIf="submitted && f.autre.errors" class="invalid-feedback">
+                        <div *ngIf="f.autre.errors.required">autre is required</div>
+                    </div>
+                </div>
+
+              <div class="form-group col">
+                    <label for="gabId">gabId</label>
+                    <input type="text" formControlName="gabId" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.gabId.errors }" />
+                    <div *ngIf="submitted && f.gabId.errors" class="invalid-feedback">
+                        <div *ngIf="f.gabId.errors.required">gabId is required</div>
+                    </div>
+                </div>
+
+
+                <div class="form-group col">
+                    <label for="type">Gab Ref ID</label>
+                    <select type="text" formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.type.errors }" >
+                    <option value="NCR SS32 IMP A4">NCR SS32 IMP A4</option>
+                    <option value="NCR SS34 IMP A4">NCR SS34 IMP A4</option>
+                    <option value="NCR SS84 IMP A4">NCR SS84 IMP A4</option>
+                    <option value="NCR SS34">NCR SS34</option>
+                    </select>
+                    <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                        <div *ngIf="f.type.errors.required">Type is required</div>
+                    </div>
+                </div>
+<!--
+                <div class="form-group col">
+                    <label for="type">GabId</label>
+                    <select type="text" formControlName="type" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gabId.errors }" >
+                        <option *ngFor="let incident of incidents " [value]="incident.Value">
+                            {{incident}}
+                          </option>
+                    </select>
+                    <div *ngIf="submitted && f.gabId.errors" class="invalid-feedback">
+                        <div *ngIf="f.gabId.errors.required">Type is required</div>
+                    </div>
+                </div>
+
+
+
+-->
+                
+
+
+
+
+
+
+            </div>
+      
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Save
+        </button>
+        <a routerLink="/incidents" class="btn btn-link">Cancel</a>
+    </div>
+</form>

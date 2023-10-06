@@ -1,0 +1,44 @@
+<h1>DIGITAL</h1>
+
+<div style=" text-align: center">
+    <button (click)="exportexcel()" >Export to Excel</button>  
+  </div>
+
+  <div class="form-group" >
+<input type="text" class="form-control"  placeholder="Searche by Reference" style="width:300px"  [(ngModel)]="searcheTerm" />
+     </div>
+ 
+<a routerLink="adddigital" class="btn btn-sm btn-success mb-2">Add DIGITAL INCIDENT</a>
+<table class="table table-striped" id="excel-table">
+    <thead>
+        <tr>
+            <th style="width: 20%">Environnement</th>
+            <th style="width: 20%">Incident</th>
+            <th style="width: 20%">Intervention</th>
+            <th style="width: 10%">Statut</th>
+            <th style="width: 10%">Date</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let digital of digitals['result'] | digitalfilter : searcheTerm">
+            <td>{{digital.Environnement}}</td>
+            <td>{{digital.Incident}}</td>
+            <td>{{digital.Intervention}}</td>
+            <td>{{digital.Statut}}</td>
+            <td>{{digital.date}}</td>
+            <td style="white-space: nowrap">
+                <a [routerLink]="['editdigital',digital?.id]" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteDigital(digital)" class="btn btn-sm btn-danger btn-delete-digital" [disabled]="digital.isDeleting">
+                    <span *ngIf="digital.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!digital.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <!--<tr *ngIf="!gabs">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>-->
+    </tbody>
+</table>

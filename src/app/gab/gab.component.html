@@ -1,0 +1,44 @@
+<h1>Gab</h1>
+
+<div style=" text-align: center">
+    <button (click)="exportexcel()" >Export to Excel</button>  
+  </div>
+
+  <div class="form-group" >
+<input type="text" class="form-control"  placeholder="Searche by Reference" style="width:300px"  [(ngModel)]="searcheTerm" />
+     </div>
+ 
+<a routerLink="addgab" class="btn btn-sm btn-success mb-2">Add GAB</a>
+<table class="table table-striped" id="excel-table">
+    <thead>
+        <tr>
+            <th style="width: 20%">Reference-ID</th>
+            <th style="width: 20%">Nom-Terminal</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 10%">Date-Mise-en-Service</th>
+            <th style="width: 10%">Incidents</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let gab of gabs['result'] | gabfilter : searcheTerm">
+            <td>{{gab.refId}}</td>
+            <td>{{gab.lib}}</td>
+            <td>{{gab.type}}</td>
+            <td>{{gab.date}}</td>
+            <td>{{!!gab.incidents ? gab.incidents.length : 0}}</td>
+            <td style="white-space: nowrap">
+                <a [routerLink]="['editgab',gab?._id]" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteGab(gab)" class="btn btn-sm btn-danger btn-delete-gab" [disabled]="gab.isDeleting">
+                    <span *ngIf="gab.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!gab.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <!--<tr *ngIf="!gabs">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>-->
+    </tbody>
+</table>
